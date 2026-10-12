@@ -146,3 +146,25 @@ Work Log:
 
 Stage Summary:
 - Project complete and verified: single-route Next.js 16 SPA (home / current affairs / 3D geo atlas / courses / resources / about / contact), 168-location globe with AI map quiz, 15 local current-affairs articles for Oct 11-12 2026 with prelims/mains/practice structure, masked xxxx prices, sticky footer, dark mode, mobile responsive, lint clean, Vercel-ready.
+
+---
+Task ID: 5
+Agent: orchestrator (main)
+Task: Fix ChunkLoadError + hydration error; verify founder profile
+
+Work Log:
+- Diagnosed ChunkLoadError (three_webgpu chunk, Turbopack): three-globe >=2.42 and three-render-objects >=1.33 statically import three/webgpu; Turbopack fails to load the resulting 1.5MB chunk. Root fix cannot be version pinning alone (tro imports webgpu at every recent version; globe.gl 2.46.2 calls tilesData at init so three-globe can't drop below 2.44 blindly)
+- Verified via npm tarballs: globe.gl 2.40.0 <-> three-globe 2.41.0 are the last webgpu-free pair; all APIs used (pathPointAlt, ringsData, onGlobeClick, pointOfView...) present
+- Pinned via overrides: globe.gl 2.40.0, three-globe 2.41.0, three-render-objects 1.42.0, three 0.180.0 (+@types/three 0.180.0)
+- Added stubs/three-webgpu-stub.ts + three-tsl-stub.ts wired through turbopack.resolveAlias in next.config.ts to keep the WebGPU build out of the chunk graph forever (WebGPURenderer is never constructed at runtime)
+- Hydration error (radix aria-controls/accordion ids shifted): audited every render path for nondeterminism (Math.random/Date/localStorage/window all confined to effects/handlers); fresh-load matrix across /, #/atlas, #/news, #/resources, #/path, #/about = 0 warnings; accordion + cart sheet + mobile sheet exercised clean. Concluded user's report came from a stale tab spanning dev-server restarts/dep swaps; made footer copyright year static (2026) as defensive fix
+- Founder profile verification (user question): page_reader on nagarjunaiasacademy.in home + /about; founder is titled verbatim "V. Ravindra Babu, Faculty: Administrative Thinking & Answer Writing"; site publishes NO founder bio/portrait (our founder.png was actually the Digital Learning Space poster); officer roll call captured (M. Tulasi IAS, JVN Subramanyam IAS, B. Uday Bhaskar IPS, N. Davis IPS, A. Ravindranadh IPS, V. Sahithya IPS, V. Narendranath IFS, G. Kapil IRS, R. Kalyan IRS, N. Mohan Krishna IRS, N. Sowmya IRS, K. Pradeep Babu IRAS, T. Rajesh Kumar ICAS, V. Rose Mary F&AS, P. Suyodhan Civil Judge); no external source confirms "Founder and Director" title
+- Added FOUNDER data object in site.ts; rebuilt About view with dedicated faculty profile section (RB monogram card, method traits, 15 officer chips with services, Dronacharia tribute quote, source-transparency note); corrected footer prose + quote attribution to the exact published title; renamed founder.png -> digital-learning-space.png
+- Browser-verified: globe renders with atmosphere; layers toggle (168<->138 counts correct); rivers as teal polylines (Nile/Amazon/Mississippi/Ganga visible); fly-to + detail panel; AI Map Quiz end-to-end (LLM question -> globe click -> OFF TARGET 7800 km -> reveal -> next; Show-on-map no-points path); Ganga tooltip hover works; console 0 errors throughout; lint clean
+- Removed accidentally committed upload/ artifact from tracking; gitignored upload/ + tool-results/; bumped version 0.2.2; pushed 4931cb8..7e2cde0
+
+Stage Summary:
+- Globe stack now Turbopack-proof (pins + alias stubs); chunk error cannot recur in dev or Vercel build
+- Hydration clean on all entry URLs; deterministic footer year
+- Founder profile factually corrected to the academy's own published title with fully sourced officer outcomes
+- Commit 7e2cde0 pushed to main
