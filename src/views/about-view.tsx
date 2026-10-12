@@ -1,10 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import { BadgeCheck, Landmark, ScrollText } from 'lucide-react';
+import { BadgeCheck, Landmark, ScrollText, GraduationCap, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useApp } from '@/lib/store';
-import { ABOUT_FEATURES } from '@/data/site';
+import { ABOUT_FEATURES, FOUNDER } from '@/data/site';
 
 export function AboutView() {
   const { setView } = useApp();
@@ -33,11 +33,6 @@ export function AboutView() {
               geography, economy and ethics at the same time, which is exactly how the
               exam tests you.
             </p>
-            <p>
-              Behind the academy stands Sri V. Ravindra Babu, faculty of Administrative
-              Thinking and Answer Writing, whose analytical explanations and personal
-              guidance have produced officers across the IAS, IPS, IRS, IFS and IRAS.
-            </p>
           </div>
 
           <div className="rule-ring mt-10 border-t pt-8">
@@ -56,7 +51,7 @@ export function AboutView() {
         <aside className="space-y-6">
           <div className="rounded-xl border border-border bg-card p-6">
             <Image
-              src="/brand/founder.png"
+              src="/brand/digital-learning-space.png"
               alt="Nagarjuna IAS Academy digital learning space poster"
               width={566}
               height={800}
@@ -74,11 +69,93 @@ export function AboutView() {
               administration of the Nation.
             </blockquote>
             <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-[0.14em] text-primary-foreground/70">
-              V. Ravindra Babu · Founder and Director
+              V. Ravindra Babu · Faculty, Administrative Thinking and Answer Writing
             </figcaption>
           </figure>
         </aside>
       </div>
+
+      {/* Faculty profile, verified against the academy's own publications */}
+      <section
+        aria-labelledby="faculty-profile-heading"
+        className="mt-16 rounded-xl border border-border bg-card p-6 sm:p-8"
+      >
+        <div className="flex items-center gap-2.5">
+          <GraduationCap className="h-5 w-5 text-gold-ink" aria-hidden />
+          <p className="font-mono text-[12px] uppercase tracking-[0.16em] text-gold-ink">
+            The faculty profile
+          </p>
+        </div>
+        <h2 id="faculty-profile-heading" className="mt-3 font-serif text-2xl font-semibold sm:text-3xl">
+          Sri V. Ravindra Babu, the teacher the academy is known for
+        </h2>
+
+        <div className="mt-8 grid gap-8 lg:grid-cols-[300px_1fr]">
+          {/* Identity card: monogram, since the academy publishes no portrait */}
+          <div className="rounded-xl border border-border bg-primary p-6 text-primary-foreground">
+            <div
+              className="flex h-24 w-24 items-center justify-center rounded-full ring-1 ring-gold/60"
+              aria-hidden
+            >
+              <span className="font-serif text-4xl font-semibold text-gold">
+                {FOUNDER.monogram}
+              </span>
+            </div>
+            <p className="mt-5 font-serif text-xl font-semibold leading-snug">{FOUNDER.name}</p>
+            <p className="mt-1.5 text-sm leading-relaxed text-primary-foreground/80">
+              {FOUNDER.role}
+            </p>
+            <p className="mt-4 border-t border-primary-foreground/20 pt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-primary-foreground/60">
+              {FOUNDER.academy}
+            </p>
+          </div>
+
+          <div className="min-w-0">
+            <h3 className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+              Inside the classroom
+            </h3>
+            <ul className="mt-3 grid gap-2.5 sm:grid-cols-2">
+              {FOUNDER.method.map((m) => (
+                <li key={m} className="flex items-start gap-2.5 text-sm leading-relaxed">
+                  <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-secondary" aria-hidden />
+                  <span>{m}</span>
+                </li>
+              ))}
+            </ul>
+
+            <h3 className="mt-7 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+              Officers from this classroom
+            </h3>
+            <ul className="mt-3 flex max-h-52 flex-wrap gap-2 overflow-y-auto scroll-slim pr-1">
+              {FOUNDER.officers.map((o) => (
+                <li
+                  key={o.name}
+                  className="rounded-full border border-border bg-background px-3 py-1.5 text-[12.5px] leading-none text-foreground/85"
+                >
+                  {o.name}
+                  <span className="ml-1.5 font-mono text-[10.5px] uppercase tracking-wide text-gold-ink">
+                    {o.service}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <figure className="mt-7 border-l-2 border-gold pl-4">
+              <Quote className="h-4 w-4 text-gold-ink" aria-hidden />
+              <blockquote className="mt-1.5 font-serif text-[16.5px] italic leading-relaxed text-foreground/90">
+                &ldquo;{FOUNDER.tribute}&rdquo;
+              </blockquote>
+              <figcaption className="mt-2 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+                {FOUNDER.tributeBy}, on her mentor
+              </figcaption>
+            </figure>
+
+            <p className="mt-6 font-mono text-[10.5px] leading-relaxed text-muted-foreground/80">
+              {FOUNDER.sourceNote}
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Public values, taught as practice */}
       <section className="mt-16 rounded-xl border border-border bg-card p-6 sm:p-8">

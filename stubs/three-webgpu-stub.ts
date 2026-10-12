@@ -12,7 +12,7 @@
  *
  * Wired up in next.config.ts via turbopack.resolveAlias.
  */
-export class WebGPURenderer {
+class WebGPURendererStub {
   // Instances are never constructed; if one ever were, fail loudly in dev.
   constructor() {
     if (process.env.NODE_ENV !== 'production') {
@@ -23,4 +23,7 @@ export class WebGPURenderer {
   }
 }
 
-export default { WebGPURenderer };
+const WebGPURenderer = WebGPURendererStub;
+export { WebGPURenderer };
+const stubDefault = { WebGPURenderer };
+export default stubDefault;

@@ -188,6 +188,53 @@ export const FAQS: Array<{ q: string; a: string }> = [
 
 /* ---------------- Founder / about ---------------- */
 
+/**
+ * Faculty profile, verified word-for-word against nagarjunaiasacademy.in
+ * (homepage attribution block and the /about page, checked Oct 2026).
+ * The academy's own site titles Sri V. Ravindra Babu exactly as
+ * "V. Ravindra Babu, Faculty: Administrative Thinking & Answer Writing" and
+ * publishes no separate founder bio or portrait; the officer list below is
+ * the testimonial roll call published on the homepage.
+ */
+export const FOUNDER = {
+  name: 'Sri V. Ravindra Babu',
+  role: 'Faculty: Administrative Thinking and Answer Writing',
+  academy: 'Nagarjuna IAS Academy',
+  monogram: 'RB',
+  signatureLine:
+    'Join as a member and blossom, to spread your unique fragrance in the public administration of the Nation.',
+  /** Teaching traits, each traced to a published testimonial. */
+  method: [
+    'Analytical, logical explanations across GS subjects',
+    'Public Administration and Essay mentoring',
+    'Interview guidance with mock sittings',
+    'TESP technique and subject frameworks',
+    'Memory-reinforcing, psychology-aware coaching',
+  ],
+  /** Officers the academy credits to his guidance (homepage testimonials). */
+  officers: [
+    { name: 'M. Tulasi', service: 'IAS' },
+    { name: 'JVN Subramanyam', service: 'IAS' },
+    { name: 'B. Uday Bhaskar', service: 'IPS' },
+    { name: 'N. Davis', service: 'IPS' },
+    { name: 'A. Ravindranadh', service: 'IPS' },
+    { name: 'V. Sahithya', service: 'IPS' },
+    { name: 'V. Narendranath', service: 'IFS' },
+    { name: 'G. Kapil', service: 'IRS' },
+    { name: 'R. Kalyan', service: 'IRS' },
+    { name: 'N. Mohan Krishna', service: 'IRS' },
+    { name: 'N. Sowmya', service: 'IRS' },
+    { name: 'K. Pradeep Babu', service: 'IRAS' },
+    { name: 'T. Rajesh Kumar', service: 'ICAS' },
+    { name: 'V. Rose Mary', service: 'Finance and Accounts Service' },
+    { name: 'P. Suyodhan', service: 'Civil Judge' },
+  ],
+  tribute: 'Ravindra Babu sir will be the Dronacharya preparing new age Arjunas.',
+  tributeBy: 'M. Tulasi, IAS',
+  sourceNote:
+    'Role, quotations and officer outcomes as published by Nagarjuna IAS Academy.',
+} as const;
+
 export const ABOUT_FEATURES: string[] = [
   '4i approach: Information, Interpretation, Integrity, Intensity',
   'Senior-most faculty with proven ability',

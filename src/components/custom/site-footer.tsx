@@ -3,9 +3,12 @@
 import { useApp, VIEWS } from '@/lib/store';
 import { Phone, MapPin, Mail } from 'lucide-react';
 
+/** Fixed founding-to-present year span: avoids a server/client Date mismatch
+ *  at year boundaries (server UTC vs visitor timezone). */
+const COPYRIGHT_YEAR = 2026;
+
 export function SiteFooter() {
   const { setView } = useApp();
-  const year = new Date().getFullYear();
 
   return (
     <footer className="mt-auto border-t border-border bg-card/60">
@@ -28,7 +31,8 @@ export function SiteFooter() {
             Nagarjuna IAS Academy
           </p>
           <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted-foreground">
-            Founded by Sri V. Ravindra Babu in Guntur, the academy prepares aspirants for
+            Under Sri V. Ravindra Babu, Faculty of Administrative Thinking and Answer
+            Writing, the academy prepares aspirants for
             the UPSC Civil Services and APPSC examinations through a holistic,
             interdisciplinary method. Join as a member and blossom, to spread your unique
             fragrance in the public administration of the Nation.
@@ -76,7 +80,7 @@ export function SiteFooter() {
 
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-4 text-center font-mono text-[11px] text-muted-foreground sm:flex-row sm:px-6 sm:text-left">
-          <span>Copyright {year} Nagarjuna IAS Academy. All rights reserved.</span>
+          <span>Copyright {COPYRIGHT_YEAR} Nagarjuna IAS Academy. All rights reserved.</span>
           <span>Transforming aspirants into officers, since Guntur first believed.</span>
         </div>
       </div>
