@@ -197,22 +197,22 @@ export function QuizPanel({ state, setState, onReveal, registerAnswer }: QuizPan
   return (
     <div className="flex h-full flex-col">
       {/* Scoreboard */}
-      <div className="flex items-center justify-between border-b border-border px-4 py-3">
+      <div className="flex items-center justify-between border-b border-[#2a3450] px-4 py-3">
         <div className="flex items-center gap-4">
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Score</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#6b7590]">Score</p>
             <p className="font-mono text-lg font-medium leading-none">{state.score}</p>
           </div>
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Streak</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#6b7590]">Streak</p>
             <p className="font-mono text-lg font-medium leading-none">{state.streak}</p>
           </div>
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Best</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#6b7590]">Best</p>
             <p className="font-mono text-lg font-medium leading-none">{state.bestStreak}</p>
           </div>
         </div>
-        <p className="font-mono text-[11px] text-muted-foreground">
+        <p className="font-mono text-[11px] text-[#6b7590]">
           {state.status === 'done' ? 'Complete' : `Round ${Math.min(state.round + 1, QUIZ_ROUNDS)}/${QUIZ_ROUNDS}`}
         </p>
       </div>
@@ -224,7 +224,7 @@ export function QuizPanel({ state, setState, onReveal, registerAnswer }: QuizPan
             <Compass className="h-8 w-8 text-gold" aria-hidden />
             <div>
               <h3 className="font-serif text-xl font-semibold">AI Map Quiz</h3>
-              <p className="mx-auto mt-2 max-w-[30ch] text-[13px] leading-relaxed text-muted-foreground">
+              <p className="mx-auto mt-2 max-w-[30ch] text-[13px] leading-relaxed text-[#aab0c4]">
                 {QUIZ_ROUNDS} questions. Read the prompt, then click the globe where the
                 place lies. Closer clicks score more.
               </p>
@@ -247,14 +247,14 @@ export function QuizPanel({ state, setState, onReveal, registerAnswer }: QuizPan
 
         {(state.status === 'answering' || state.status === 'answered') && q && (
           <>
-            <div className="rounded-lg border border-border bg-background p-4">
+            <div className="rounded-lg border border-[#3a4666] bg-[#10182b] p-4">
               <div className="flex items-center gap-2">
                 <Sparkles className="h-3.5 w-3.5 text-gold-ink" aria-hidden />
-                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#6b7590]">
                   {q.generatedBy === 'ai' ? 'AI generated' : 'Offline bank'} · {q.difficulty}
                 </p>
               </div>
-              <p className="mt-2 font-serif text-[16px] font-medium leading-relaxed">{q.question}</p>
+              <p className="mt-2 font-serif text-[16px] font-medium leading-relaxed text-[#f2ecdb]">{q.question}</p>
               {state.status === 'answering' && (
                 <p className="mt-3 flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-secondary">
                   <Crosshair className="h-3.5 w-3.5" aria-hidden />
@@ -264,7 +264,7 @@ export function QuizPanel({ state, setState, onReveal, registerAnswer }: QuizPan
             </div>
 
             {state.status === 'answered' && state.result && (
-              <div className="view-enter rounded-lg border border-secondary/50 bg-secondary/10 p-4">
+              <div className="view-enter rounded-lg border border-[#4fb3a5]/60 bg-[#4fb3a5]/10 p-4">
                 <div className="flex items-center justify-between">
                   <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-secondary">
                     {state.result.band}
@@ -281,11 +281,11 @@ export function QuizPanel({ state, setState, onReveal, registerAnswer }: QuizPan
                   </span>
                 </p>
                 {q.explanation && (
-                  <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
+                  <p className="mt-1.5 text-[13px] leading-relaxed text-[#aab0c4]">
                     {q.explanation}
                   </p>
                 )}
-                <p className="mt-2 font-mono text-[11px] text-muted-foreground">
+                <p className="mt-2 font-mono text-[11px] text-[#aab0c4]">
                   +{state.result.points} points
                 </p>
               </div>
@@ -293,7 +293,7 @@ export function QuizPanel({ state, setState, onReveal, registerAnswer }: QuizPan
 
             <div className="flex flex-wrap gap-2">
               {state.status === 'answering' && (
-                <Button variant="outline" size="sm" onClick={reveal} className="h-8 text-[12px]">
+                <Button variant="outline" size="sm" onClick={reveal} className="h-8 border-[#3a4666] bg-transparent text-[#e9e4d6] hover:bg-[#232d4a] hover:text-[#e9e4d6] text-[12px]">
                   Show on map (scores 0)
                 </Button>
               )}
@@ -311,11 +311,11 @@ export function QuizPanel({ state, setState, onReveal, registerAnswer }: QuizPan
             <Trophy className="h-8 w-8 text-gold" aria-hidden />
             <div>
               <h3 className="font-serif text-xl font-semibold">Round complete</h3>
-              <p className="mt-1 font-mono text-sm text-muted-foreground">
+              <p className="mt-1 font-mono text-sm text-[#aab0c4]">
                 {state.score} points · best streak {state.bestStreak}
               </p>
             </div>
-            <p className="max-w-[34ch] text-[13px] leading-relaxed text-muted-foreground">
+            <p className="max-w-[34ch] text-[13px] leading-relaxed text-[#aab0c4]">
               {state.score >= 70
                 ? 'Atlas-level command. The map section will fear you.'
                 : state.score >= 40

@@ -99,11 +99,12 @@ export function GlobeCanvas({
         .pathPointLat((p: any) => p[0])
         .pathPointLng((p: any) => p[1])
         .pathColor(() => LAYER_BY_ID.rivers.color)
-        .pathStroke(1.1)
+        .pathStroke(2.4)
+        .pathPointAlt(0.015)
         .pathTransitionDuration(500)
         .pathLabel((d: any) => `
           <div style="font-family:var(--font-data),monospace;font-size:11px;padding:6px 9px;border-radius:8px;background:#141b30ee;color:#f2ecdb;border:1px solid #3a4666;max-width:240px">
-            <strong style="color:#4fb3a5">${d.name}</strong><br/>
+            <strong style="color:#3fe0cb">${d.name}</strong><br/>
             <span style="color:#aab0c4">${d.lengthKm ? d.lengthKm + ' km course' : ''}</span>
           </div>`);
 

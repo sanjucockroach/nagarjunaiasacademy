@@ -116,3 +116,18 @@ Work Log:
 
 Stage Summary:
 - Full app builds and serves on port 3000 (HTTP 200). AI quiz endpoint returns LLM questions with offline fallback.
+
+---
+Task ID: 3
+Agent: orchestrator (main)
+Task: Browser verification, fixes, README, deploy readiness
+
+Work Log:
+- Browser-verified every view via agent-browser: home (hero, 4i, benefits, testimonials, FAQ, CTA), news (tabs Today/Yesterday, category filters, article expansion, prelims/mains/additional sections, key terms, MCQ instant feedback), atlas (8 layer toggles with counts, search, explore list, fly-to, detail panel, prev/next), quiz (AI question -> globe click -> haversine scoring 6500km off-target -> reveal -> next), courses (masked xxxx prices, add-to-list, cart drawer, toast), resources (localStorage syllabus tracker, gyan card flip), about, contact (form + local-only note)
+- Fixed during verification: JSX optional-chain parse error in news-view; corrupted site-header rewritten; SheetDescription import; pathAltitude -> pathPointAlt (correct globe.gl API) making river polylines render; river color brightened to #3fe0cb with 2.4 stroke; quiz panel dark-palette contrast fix; metadataBase set; engines node>=20.9
+- Verified dark mode, mobile 390px layout, mobile sheet menu, sticky footer (mt-auto) on short and long pages
+- Lint clean, console clean on fresh load, dev.log clean (API 200s)
+- Wrote README.md (features, stack, structure, data-update guide, Vercel deploy steps), design.md already committed
+
+Stage Summary:
+- Site fully functional and verified. Ready for Vercel deploy without env vars (quiz falls back to local bank). All prices masked, current affairs local, 168 atlas entries across 8 layers.

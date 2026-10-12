@@ -21,7 +21,7 @@ export const LAYERS: GeoLayerMeta[] = [
     id: 'rivers',
     label: 'Rivers',
     short: 'Rivers',
-    color: '#4fb3a5',
+    color: '#3fe0cb',
     description: '30 courses as real polylines: Ganga, Brahmaputra, Indus and the world.',
     syllabus: 'GS1 · GS2 IR · GS3',
   },

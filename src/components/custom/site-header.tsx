@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes';
 import { useState } from 'react';
 import { Moon, Sun, ShoppingBag, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { useApp, VIEWS } from '@/lib/store';
 import { CartDrawer } from './cart-drawer';
 
@@ -92,6 +92,7 @@ export function SiteHeader() {
             </SheetTrigger>
             <SheetContent side="right" className="w-72">
               <SheetTitle className="font-serif">Navigate</SheetTitle>
+              <SheetDescription className="sr-only">Switch between site sections</SheetDescription>
               <nav aria-label="Mobile" className="mt-4 flex flex-col gap-1">
                 {VIEWS.map((v) => (
                   <Button
